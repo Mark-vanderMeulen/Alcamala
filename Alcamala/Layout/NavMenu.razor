@@ -1,0 +1,56 @@
+﻿@inject NavigationManager NavigationManager
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Alcamala</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    <nav class="nav flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="lists">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Lists
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="drinks">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Drinks
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="drinkcharts">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> DrinkCharts
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="weight">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weight
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="notes">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Notes
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="profile">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Profile
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

@@ -1,0 +1,13 @@
+﻿@layout AuthenticationLayout
+
+@attribute [AllowAnonymous]
+
+@page "/login"
+
+<h3>Login</h3>
+
+<input type="text" @bind-value="@_email" />
+<input type="password" @bind-value="@_password" />
+<button @onclick="@TryLogin">
+    Log in
+</button>

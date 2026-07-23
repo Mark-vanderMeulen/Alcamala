@@ -1,0 +1,17 @@
+﻿@using Fireblaze.Auth.Services
+
+@attribute [AllowAnonymous]
+
+@page "/logout"
+
+@inject FirebaseAuthService FirebaseAuthService
+@inject NavigationManager NavigationManager
+
+@code {
+    protected override void OnInitialized()
+    {
+        FirebaseAuthService.SignOut();
+
+        NavigationManager.NavigateTo("/login", replace: true);
+    }
+}

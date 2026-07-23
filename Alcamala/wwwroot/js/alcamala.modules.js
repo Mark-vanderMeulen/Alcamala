@@ -1,0 +1,1 @@
+﻿export const csharpModules = (await globalThis.getDotnetRuntime(0).getAssemblyExports("Alcamala.dll")).Alcamala.Modules;

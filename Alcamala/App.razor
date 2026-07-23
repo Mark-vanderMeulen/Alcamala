@@ -1,0 +1,23 @@
+﻿@using Alcamala.Pages
+
+<CascadingAuthenticationState>
+    <Router AppAssembly="@typeof(App).Assembly" NotFoundPage="typeof(Pages.NotFound)">
+        <Found Context="routeData">
+            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+                <NotAuthorized>
+                    @if (context.User.Identity is not { IsAuthenticated: true })
+                    {
+                        // User is not logged in
+                        <RedirectToLogin />
+                    }
+                    else
+                    {
+                        // User is logged in, but does not have access to this resource
+                        <p role="alert">You are not authorized to access this resource.</p>
+                    }
+                </NotAuthorized>
+            </AuthorizeRouteView>
+            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        </Found>
+    </Router>
+</CascadingAuthenticationState>
