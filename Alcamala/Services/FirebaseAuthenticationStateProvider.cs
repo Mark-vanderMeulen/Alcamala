@@ -1,5 +1,5 @@
 ﻿using Alcamala.Models;
-using Fireblaze.Auth.Interfaces;
+using Fireblaze.Auth;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;
 

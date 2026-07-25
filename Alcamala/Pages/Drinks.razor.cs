@@ -1,8 +1,5 @@
 ﻿using Alcamala.Models.Firestore;
-using Fireblaze.Firestore.Extensions;
-using Fireblaze.Firestore.Helpers;
-using Fireblaze.Firestore.Models;
-using Fireblaze.Firestore.Services;
+using Fireblaze.Firestore;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Blazor;

@@ -1,4 +1,4 @@
-﻿using Fireblaze.Firestore.Attributes;
+﻿using Fireblaze.Firestore;
 
 namespace Alcamala.Models.Firestore.UserSettings;
 

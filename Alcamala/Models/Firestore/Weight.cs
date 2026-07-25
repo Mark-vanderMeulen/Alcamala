@@ -1,6 +1,4 @@
-﻿using Fireblaze.Core;
-using Fireblaze.Firestore.Attributes;
-using Fireblaze.Firestore.Models;
+﻿using Fireblaze.Firestore;
 
 namespace Alcamala.Models.Firestore;
 

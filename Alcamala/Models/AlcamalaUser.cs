@@ -1,5 +1,5 @@
 ﻿using Alcamala.Models.Firestore;
-using Fireblaze.Auth.Interfaces;
+using Fireblaze.Auth;
 
 namespace Alcamala.Models;
 

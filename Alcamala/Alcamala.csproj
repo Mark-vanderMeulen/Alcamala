@@ -21,4 +21,9 @@
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+	<ProjectReference Include="..\..\Elysium\Elysium.Components\Elysium.Components.csproj" />
+	<ProjectReference Include="..\..\Fireblaze\Fireblaze\Fireblaze.csproj" />
+  </ItemGroup>
+
 </Project>

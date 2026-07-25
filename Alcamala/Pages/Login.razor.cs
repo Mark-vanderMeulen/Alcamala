@@ -1,4 +1,4 @@
-﻿using Fireblaze.Auth.Services;
+﻿using Fireblaze.Auth;
 using Microsoft.AspNetCore.Components;
 
 namespace Alcamala.Pages;
