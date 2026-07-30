@@ -1,20 +1,30 @@
-﻿@inherits LayoutComponentBase
+﻿@using Alcamala.Models
+@using Elysium.Components.Buttons
+@using Elysium.Components.Navigation
+@using Elysium.Icons
+
+@inherits LayoutComponentBase
 
 @inject NavigationManager NavigationManager
 
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            <a href="" @onclick="@Logout">Log out</a>
+    <ElNavBar Class="sidebar">
+        <div class="logo">
+            @AlcamalaLogo.Icon.GetSVG("128px", "128px")
         </div>
 
-        <article class="content px-4">
-            @Body
-        </article>
+        <div class="navigation-items">
+            <ElNavItem Href="drinks" Label="Drinks" Icon="@Icon.Cup_Straw" Style="border-radius: var(--elysium-radius-sm);" />
+            <ElNavItem Href="weight" Label="Weight" Icon="@Icon.Heart_Pulse" Style="border-radius: var(--elysium-radius-sm);" />
+        </div>
+
+        <div class="profile">
+            <ElTextButton Text="Log out" Click="@Logout" Variant="ButtonStyle.Outlined" />
+        </div>
+    </ElNavBar>
+
+    <main>
+        @Body
     </main>
 </div>
 

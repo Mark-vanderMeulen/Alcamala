@@ -1,9 +1,10 @@
 ﻿using Fireblaze.Auth;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace Alcamala.Pages;
 
-public partial class Login// : IDisposable
+public partial class Login : IDisposable
 {
     [Inject] public required FirebaseAuthService FirebaseAuthService { get; init; }
     [Inject] public required NavigationManager NavigationManager { get; init; }
@@ -12,20 +13,14 @@ public partial class Login// : IDisposable
     private string _email = string.Empty;
     private string _password = string.Empty;
 
-    //protected override void OnInitialized()
-    //{
-    //    FirebaseAuthModule.FirebaseAuthStateChanged += OnFirebaseAuthStateChanged;
-    //}
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
 
-    //private void OnFirebaseAuthStateChanged(object? _, FirebaseAuthStateChangedEventArgs e)
-    //{
-    //    if (e.FirebaseUser is IFirebaseUser firebaseUser)
-    //    {
-    //        NavigationManager.NavigateTo("/drinks");
-    //    }
-    //}
+        FirebaseAuthService.FirebaseAuthStateChanged += OnFirebaseAuthStateChanged;
+    }
 
-    private async Task TryLogin()
+    private async Task TryLoginAsync()
     {
         await FirebaseAuthService.TrySignInWithEmailAndPassword(_email, _password);
 
@@ -39,8 +34,24 @@ public partial class Login// : IDisposable
         NavigationManager.NavigateTo(target);
     }
 
-    //public void Dispose()
-    //{
-    //    FirebaseAuthModule.FirebaseAuthStateChanged -= OnFirebaseAuthStateChanged;
-    //}
+    private void OnFirebaseAuthStateChanged(object? _, FirebaseAuthStateChangedEventArgs e)
+    {
+        if (e.FirebaseUser is IFirebaseUser firebaseUser)
+        {
+            NavigationManager.NavigateTo("/drinks");
+        }
+    }
+
+    private async Task OnKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await TryLoginAsync();
+        }
+    }
+
+    public void Dispose()
+    {
+        FirebaseAuthService.FirebaseAuthStateChanged -= OnFirebaseAuthStateChanged;
+    }
 }

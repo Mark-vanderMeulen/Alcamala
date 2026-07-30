@@ -4,10 +4,15 @@
 
 @page "/login"
 
-<h3>Login</h3>
+@using Elysium.Components.Buttons
+@using Elysium.Components.Inputs
+@using Elysium.Components.Layout
 
-<input type="text" @bind-value="@_email" />
-<input type="password" @bind-value="@_password" />
-<button @onclick="@TryLogin">
-    Log in
-</button>
+<div class="login-card" @onkeydown="@OnKeyDown">
+    <ElCard Title="Login">
+        <ElTextInput @bind-Value="@_email" Placeholder="@("name@email.com")" Style="margin-bottom: var(--elysium-spacing-md);" />
+        <ElPasswordInput @bind-Value="@_password" Placeholder="Password" />
+        
+        <ElTextButton Text="Log in" Click="@TryLoginAsync" Style="margin-top: var(--elysium-spacing-lg);" />
+    </ElCard>
+</div>

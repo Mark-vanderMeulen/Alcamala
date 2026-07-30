@@ -1,31 +1,34 @@
-﻿@using LiveChartsCore.SkiaSharpView.Blazor
+﻿@using Elysium.Components.Layout
+@using LiveChartsCore.SkiaSharpView.Blazor
 
 @inherits BasePage
 
 @page "/"
 @page "/drinks"
 
-<PageTitle>Drinks</PageTitle>
+<PageTitle>Drinks - Alcamala</PageTitle>
 
-<h1>Drinks</h1>
+<ElAppBar Title="Drinks" />
 
-<div style="display: flex; flex-direction: row;">
-    <div>
-        <InputDate TValue="DateOnly"
-                   Value="@_selectedDate"
-                   ValueChanged="SelectedDateChanged"
-                   ValueExpression="@(() => _selectedDate)" />
+<article class="page-content">
+    <div style="display: flex; flex-direction: row;">
+        <div>
+            <InputDate TValue="DateOnly"
+                       Value="@_selectedDate"
+                       ValueChanged="SelectedDateChanged"
+                       ValueExpression="@(() => _selectedDate)" />
 
-        <ul>
-            @foreach (var drink in _todaysDrinks.OrderBy(drink => drink.ConsumedOn))
-            {
-                <li>@($"{drink.Name}: {drink.Amount} ({drink.ConsumedOn.ToLocalTime()})")</li>
-            }
-        </ul>
+            <ul>
+                @foreach (var drink in _todaysDrinks.OrderBy(drink => drink.ConsumedOn))
+                {
+                    <li>@($"{drink.Name}: {drink.Amount} ({drink.ConsumedOn.ToLocalTime()})")</li>
+                }
+            </ul>
+        </div>
+        <div style="width: 500px; height: 500px;">
+            <CartesianChart @ref="@_chart"
+                            Series="@_series"
+                            LegendPosition="LiveChartsCore.Measure.LegendPosition.Right" />
+        </div>
     </div>
-    <div style="width: 500px; height: 500px;">
-        <CartesianChart @ref="@_chart"
-                        Series="@_series"
-                        LegendPosition="LiveChartsCore.Measure.LegendPosition.Right" />
-    </div>
-</div>
+</article>
