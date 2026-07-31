@@ -15,17 +15,16 @@
         <div>
             <ElDateInput Value="@_selectedDate" ValueChanged="@SelectedDateChanged" />
 
-            <ul>
-                @foreach (var drink in _todaysDrinks.OrderBy(drink => drink.ConsumedOn))
-                {
-                    <li>@($"{drink.Name}: {drink.Amount} ({drink.ConsumedOn.ToLocalTime()})")</li>
-                }
-            </ul>
+            <ElList Items="@_todaysDrinks.OrderBy(drink => drink.ConsumedOn)" ItemStyle="color: var(--elysium-color-on-surface);">
+                <ItemTemplate Context="drink">
+                    <div>@($"{drink.Name}: {drink.Amount} ({drink.ConsumedOn.ToLocalTime()})")</div>
+                </ItemTemplate>
+            </ElList>
         </div>
-        <div style="width: 500px; height: 500px;">
+        @* <div style="width: 500px; height: 500px;">
             <CartesianChart @ref="@_chart"
                             Series="@_series"
                             LegendPosition="LiveChartsCore.Measure.LegendPosition.Right" />
-        </div>
+        </div> *@
     </div>
 </article>

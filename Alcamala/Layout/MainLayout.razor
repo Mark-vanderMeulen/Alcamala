@@ -1,5 +1,6 @@
 ﻿@using Alcamala.Models
 @using Elysium.Components.Buttons
+@using Elysium.Components.Enums
 @using Elysium.Components.Navigation
 @using Elysium.Icons
 
@@ -8,7 +9,7 @@
 @inject NavigationManager NavigationManager
 
 <div class="page">
-    <ElNavBar Class="sidebar">
+    <ElSidebar Class="sidebar">
         <div class="logo">
             @AlcamalaLogo.Icon.GetSVG("128px", "128px")
         </div>
@@ -21,11 +22,16 @@
         <div class="profile">
             <ElTextButton Text="Log out" Click="@Logout" Variant="ButtonStyle.Outlined" />
         </div>
-    </ElNavBar>
+    </ElSidebar>
 
     <main>
         @Body
     </main>
+
+    <ElBottomNavBar Class="bottom-nav-bar">
+        <ElNavItem Href="drinks" Label="Drinks" LabelPosition="@Position.Bottom" Icon="@Icon.Cup_Straw"  />
+        <ElNavItem Href="weight" Label="Weight" LabelPosition="@Position.Bottom" Icon="@Icon.Heart_Pulse" />
+    </ElBottomNavBar>
 </div>
 
 @code {
