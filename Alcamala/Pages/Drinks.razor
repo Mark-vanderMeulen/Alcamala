@@ -1,9 +1,9 @@
-﻿@using Elysium.Components.Layout
+﻿@using Elysium.Components.Inputs
+@using Elysium.Components.Layout
 @using LiveChartsCore.SkiaSharpView.Blazor
 
 @inherits BasePage
 
-@page "/"
 @page "/drinks"
 
 <PageTitle>Drinks - Alcamala</PageTitle>
@@ -13,10 +13,7 @@
 <article class="page-content">
     <div style="display: flex; flex-direction: row;">
         <div>
-            <InputDate TValue="DateOnly"
-                       Value="@_selectedDate"
-                       ValueChanged="SelectedDateChanged"
-                       ValueExpression="@(() => _selectedDate)" />
+            <ElDateInput Value="@_selectedDate" ValueChanged="@SelectedDateChanged" />
 
             <ul>
                 @foreach (var drink in _todaysDrinks.OrderBy(drink => drink.ConsumedOn))
