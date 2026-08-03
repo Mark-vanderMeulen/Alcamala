@@ -1,12 +1,14 @@
 ﻿using Alcamala.Models;
 using Alcamala.Services;
+using Elysium.Components.Services;
 using Microsoft.AspNetCore.Components;
 
 namespace Alcamala.Pages;
 
 public class BasePage : ComponentBase
 {
-    [Inject] public FirebaseAuthenticationStateProvider Auth { get; set; } = null!;
+    [Inject] protected ElAppBarService AppBarService { get; set; } = null!;
+    [Inject] protected FirebaseAuthenticationStateProvider Auth { get; set; } = null!;
 
     protected AlcamalaUser CurrentUser => Auth.CurrentUser ?? SignOutAndThrow();
 

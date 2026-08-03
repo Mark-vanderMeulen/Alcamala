@@ -1,6 +1,8 @@
 using Alcamala.Modules;
 using Alcamala.Services;
+using Elysium.Components.Services;
 using Elysium.Themes.Extensions;
+using Elysium.Utilities.DeviceInfo;
 using Fireblaze;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -21,6 +23,8 @@ public class Program
         builder.Services.AddFireblazeAuth<FirebaseAuthenticationStateProvider>();
 
         builder.Services.AddElysiumThemes();
+        builder.Services.AddScoped<ElAppBarService>();
+        builder.Services.AddScoped<DeviceInfoService>();
 
         var host = builder.Build();
 

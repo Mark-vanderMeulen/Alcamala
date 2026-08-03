@@ -34,7 +34,7 @@ main {
     }
 }
 
-@media (max-width: 640.98px) {
+/*@media (max-width: 640.98px) {
     .page {
         flex-direction: column;
     }
@@ -52,4 +52,4 @@ main {
     ::deep .bottom-nav-bar {
         display: none !important;
     }
-}
+}*/

@@ -1,8 +1,10 @@
 ﻿using Alcamala.Models.Firestore;
+using Elysium.Components.Services;
 using Fireblaze.Firestore;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Blazor;
+using Microsoft.AspNetCore.Components;
 
 namespace Alcamala.Pages;
 
@@ -16,6 +18,10 @@ public partial class Drinks : BasePage
 
     protected override async Task OnInitializedAsync()
     {
+        await base.OnInitializedAsync();
+
+        AppBarService.SetConfig(new ElAppBarConfig("Drinks"));
+
         _todaysDrinks = await GetDrinksForDateAsync(_selectedDate);
 
         _series =
