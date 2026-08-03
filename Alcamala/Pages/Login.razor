@@ -11,8 +11,10 @@
 <div class="login-card" @onkeydown="@OnKeyDown">
     <ElCard Title="Alcamala">
         <ElTextInput @bind-Value="@_email" Placeholder="@("name@email.com")" Style="margin-bottom: var(--elysium-spacing-md);" />
-        <ElPasswordInput @bind-Value="@_password" Placeholder="@AppResources.Password" />
+        <ElPasswordInput @bind-Value="@_password" Placeholder="@AppResources.Password" Style="margin-bottom: var(--elysium-spacing-lg);" />
+
+        <ElCheckbox @bind-Value="@_rememberMe" Label="@AppResources.RememberMe" />
         
-        <ElTextButton Text="@AppResources.LogIn" Click="@TryLoginAsync" Style="margin-top: var(--elysium-spacing-lg);" />
+        <ElTextButton Text="@AppResources.LogIn" Click="@TryLoginAsync" Style="margin-top: var(--elysium-spacing-xl);" />
     </ElCard>
 </div>

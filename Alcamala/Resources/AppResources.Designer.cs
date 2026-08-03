@@ -106,6 +106,15 @@ namespace Alcamala {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remember me.
+        /// </summary>
+        internal static string RememberMe {
+            get {
+                return ResourceManager.GetString("RememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         internal static string Settings {

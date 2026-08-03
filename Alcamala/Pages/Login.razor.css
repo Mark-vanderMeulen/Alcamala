@@ -4,4 +4,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    div.remember-me {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+    }
 }

@@ -12,6 +12,7 @@ public partial class Login : IDisposable
 
     private string _email = string.Empty;
     private string _password = string.Empty;
+    private bool _rememberMe;
 
     protected override void OnInitialized()
     {
@@ -22,7 +23,7 @@ public partial class Login : IDisposable
 
     private async Task TryLoginAsync()
     {
-        await FirebaseAuthService.TrySignInWithEmailAndPassword(_email, _password);
+        await FirebaseAuthService.TrySignInWithEmailAndPassword(_email, _password, _rememberMe);
 
         var target = "/drinks";
 
