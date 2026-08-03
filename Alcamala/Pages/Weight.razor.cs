@@ -8,6 +8,6 @@ public partial class Weight : BasePage
     {
         base.OnInitialized();
 
-        AppBarService.SetConfig(new ElAppBarConfig("Weight"));
+        AppBarService.SetConfig(new AppBarConfig(AppResources.Weight));
     }
 }

@@ -20,7 +20,7 @@ public partial class Drinks : BasePage
     {
         await base.OnInitializedAsync();
 
-        AppBarService.SetConfig(new ElAppBarConfig("Drinks"));
+        AppBarService.SetConfig(new AppBarConfig(AppResources.Drinks));
 
         _todaysDrinks = await GetDrinksForDateAsync(_selectedDate);
 
