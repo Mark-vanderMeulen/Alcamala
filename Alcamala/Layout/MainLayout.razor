@@ -1,12 +1,15 @@
 ﻿@using Alcamala.Models
+@using Alcamala.Services
 @using Elysium.Components.Buttons
 @using Elysium.Components.Enums
+@using Elysium.Components.Inputs
 @using Elysium.Components.Layout
 @using Elysium.Components.Navigation
 @using Elysium.Icons
 
 @inherits LayoutComponentBase
 
+@inject LocalStorageService LocalStorageService
 @inject NavigationManager NavigationManager
 
 <div class="page">
@@ -23,14 +26,11 @@
                 </div>
 
                 <div class="profile">
-                    <ElTextButton Text="Log out" Click="@Logout" Variant="ButtonStyle.Outlined" />
+                    <ElDropdownInput T="string" ValueChanged="@LanguageSelected" AvailableValues="@(["en", "nl"])" />
+                    <ElTextButton Text="Log out" Click="@Logout" Variant="ButtonStyle.Outlined" Style="margin-top: var(--elysium-spacing-md);" />
                 </div>
             </ElSidebar>
         </Sidebar>
-    
-        @* <AppBar>
-            <ElAppBar Title="TestLayout"></ElAppBar>
-        </AppBar> *@
 
         <Content>
             <main>
@@ -47,35 +47,16 @@
     </ElLayout>
 </div>
 
-@* <div class="page">
-    <ElSidebar Class="sidebar">
-        <div class="logo">
-            @AlcamalaLogo.Icon.GetSVG("128px", "128px")
-        </div>
-
-        <div class="navigation-items">
-            <ElNavItem Href="drinks" Label="Drinks" Icon="@Icon.Cup_Straw" Style="border-radius: var(--elysium-radius-sm);" />
-            <ElNavItem Href="weight" Label="Weight" Icon="@Icon.Heart_Pulse" Style="border-radius: var(--elysium-radius-sm);" />
-        </div>
-
-        <div class="profile">
-            <ElTextButton Text="Log out" Click="@Logout" Variant="ButtonStyle.Outlined" />
-        </div>
-    </ElSidebar>
-
-    <main>
-        @Body
-    </main>
-
-    <ElBottomNavBar Class="bottom-nav-bar">
-        <ElNavItem Href="drinks" Label="Drinks" LabelPosition="@Position.Bottom" Icon="@Icon.Cup_Straw"  />
-        <ElNavItem Href="weight" Label="Weight" LabelPosition="@Position.Bottom" Icon="@Icon.Heart_Pulse" />
-    </ElBottomNavBar>
-</div> *@
-
 @code {
     private void Logout()
     {
         NavigationManager.NavigateTo("logout");
+    }
+
+    private async Task LanguageSelected(string language)
+    {
+        await LocalStorageService.SetCultureAsync(language);
+
+        NavigationManager.NavigateTo(NavigationManager.Uri, true);
     }
 }

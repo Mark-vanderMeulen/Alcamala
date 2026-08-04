@@ -29,27 +29,8 @@ main {
     div.profile {
         margin-top: auto;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 }
-
-/*@media (max-width: 640.98px) {
-    .page {
-        flex-direction: column;
-    }
-
-    ::deep .sidebar {
-        display: none !important;
-    }
-}
-
-@media (min-width: 641px) {
-    .page {
-        flex-direction: row;
-    }
-
-    ::deep .bottom-nav-bar {
-        display: none !important;
-    }
-}*/

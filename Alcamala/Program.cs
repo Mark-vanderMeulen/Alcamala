@@ -1,4 +1,3 @@
-using Alcamala.Modules;
 using Alcamala.Services;
 using Elysium.Components.Services;
 using Elysium.Themes.Extensions;
@@ -6,6 +5,7 @@ using Elysium.Utilities.DeviceInfo;
 using Fireblaze;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using System.Globalization;
 
 namespace Alcamala;
 
@@ -19,6 +19,8 @@ public class Program
 
         builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
+        builder.Services.AddScoped<LocalStorageService>();
+
         builder.Services.AddAuthorizationCore();
         builder.Services.AddFireblazeAuth<FirebaseAuthenticationStateProvider>();
 
@@ -27,8 +29,6 @@ public class Program
         builder.Services.AddScoped<DeviceInfoService>();
 
         var host = builder.Build();
-
-        await AlcamalaModules.ImportModuleAsync();
 
         await FireblazeApp.InitializeAsync(new FirebaseConfig
         {
@@ -42,6 +42,24 @@ public class Program
             MeasurementId = "G-918DC7JXKZ"
         });
 
+        await SetCultureAsync(host.Services);
+
         await host.RunAsync();
+    }
+
+    private static async Task SetCultureAsync(IServiceProvider serviceProvider)
+    {
+        var localStorageService = serviceProvider.GetRequiredService<LocalStorageService>();
+        var savedCultureName = await localStorageService.GetCultureAsync();
+
+        if (!string.IsNullOrEmpty(savedCultureName))
+        {
+            var savedCulture = new CultureInfo(savedCultureName);
+
+            CultureInfo.CurrentCulture = savedCulture;
+            CultureInfo.CurrentUICulture = savedCulture;
+            CultureInfo.DefaultThreadCurrentCulture = savedCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = savedCulture;
+        }
     }
 }
