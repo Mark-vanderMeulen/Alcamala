@@ -2,6 +2,7 @@ using Alcamala.Services;
 using Elysium.Components.Services;
 using Elysium.Themes.Extensions;
 using Elysium.Utilities.DeviceInfo;
+using Elysium.Utilities.LocalStorage;
 using Fireblaze;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -54,12 +55,16 @@ public class Program
 
         if (!string.IsNullOrEmpty(savedCultureName))
         {
-            var savedCulture = new CultureInfo(savedCultureName);
+            try
+            {
+                var savedCulture = new CultureInfo(savedCultureName);
 
-            CultureInfo.CurrentCulture = savedCulture;
-            CultureInfo.CurrentUICulture = savedCulture;
-            CultureInfo.DefaultThreadCurrentCulture = savedCulture;
-            CultureInfo.DefaultThreadCurrentUICulture = savedCulture;
+                CultureInfo.CurrentCulture = savedCulture;
+                CultureInfo.CurrentUICulture = savedCulture;
+                CultureInfo.DefaultThreadCurrentCulture = savedCulture;
+                CultureInfo.DefaultThreadCurrentUICulture = savedCulture;
+            }
+            catch (CultureNotFoundException) { }
         }
     }
 }

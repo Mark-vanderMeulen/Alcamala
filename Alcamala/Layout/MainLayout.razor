@@ -1,11 +1,12 @@
-﻿@using Alcamala.Models
-@using Alcamala.Services
+﻿@using System.Globalization
+@using Alcamala.Models
 @using Elysium.Components.Buttons
 @using Elysium.Components.Enums
 @using Elysium.Components.Inputs
 @using Elysium.Components.Layout
 @using Elysium.Components.Navigation
 @using Elysium.Icons
+@using Elysium.Utilities.LocalStorage
 
 @inherits LayoutComponentBase
 
@@ -26,7 +27,7 @@
                 </div>
 
                 <div class="profile">
-                    <ElDropdownInput T="string" ValueChanged="@LanguageSelected" AvailableValues="@(["en", "nl"])" />
+                    <ElDropdownInput T="string" Value="@CultureInfo.CurrentUICulture.ToString()" ValueChanged="@LanguageSelected" AvailableValues="@(["en", "nl"])" DropdownPosition="Position.Top" />
                     <ElTextButton Text="Log out" Click="@Logout" Variant="ButtonStyle.Outlined" Style="margin-top: var(--elysium-spacing-md);" />
                 </div>
             </ElSidebar>

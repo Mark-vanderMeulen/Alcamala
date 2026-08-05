@@ -52,6 +52,7 @@
 	</ItemGroup>
 
 	<PropertyGroup>
+		<!--Required for runtime culture switching-->
 		<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
 	</PropertyGroup>
 
